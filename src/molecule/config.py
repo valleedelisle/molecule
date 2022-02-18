@@ -287,7 +287,7 @@ class Config(object, metaclass=NewInitCaller):
         """
         defaults = self._get_defaults()
         base_configs = filter(os.path.exists, self.args.get("base_config", []))
-        for base_config in base_configs:
+        for base_config in list(base_configs):
             with util.open_file(base_config) as stream:
                 s = stream.read()
                 self._preflight(s)
